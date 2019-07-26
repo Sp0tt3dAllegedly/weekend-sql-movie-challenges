@@ -9,10 +9,27 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import { takeLatest, put} from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    takeLatest('FETCH_MOVIES', fetchMoviesSaga);
+    takeLatest('FETCH_GENERES', fetchGenresSaga);
+    takeLatest('new stuff here', showDetailsSaga);
 
+}
+
+
+function* fetchMoviesSaga(){
+// 'SET_MOVIES' HERE
+}
+
+function* fetchGenresSaga(){
+    // 'SET_TAGS(genres)' HERE
+}
+
+function* showDetailsSaga(){
+    // 'SET_MOVIE_LIST'
 }
 
 // Create sagaMiddleware
@@ -38,11 +55,21 @@ const genres = (state = [], action) => {
     }
 }
 
+const movieGenreList = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_LIST':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieGenreList
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
