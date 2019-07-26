@@ -13,16 +13,10 @@ class App extends Component {
     return (
 <Router>
 
-      <div className="App">
-        <header className='AppHeader'>
-          <h1 className='AppHeaderText'>Movies Weekend Challenge</h1>
-        </header>
-      </div>
-
       <main>
-        <Route exact path='/' component={Home}/>
-        <Route path='/details' component={Details}/>
-        <Route path='/edit' component={Edit}/>
+        <Route exact path='/' component= {Home}/>
+        <Route path='/details' component= {Details}/>
+        <Route path='/edit' component= {Edit}/>
       </main>
 
 </Router>
