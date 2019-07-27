@@ -46,4 +46,8 @@ class Edit extends Component {
   }
 }
 
-export default connect() (Edit);
+const mapStoreToProps = (reduxStore) => ({
+    reduxStore
+})
+
+export default connect(mapStoreToProps)(Edit);

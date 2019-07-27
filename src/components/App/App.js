@@ -5,6 +5,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Details from '../Details/Details';
 import Edit from '../Edit/Edit';
+import { connect } from 'react-redux';
 
 
 class App extends Component {
@@ -14,9 +15,16 @@ class App extends Component {
 <Router>
 
       <main>
-        <Route exact path='/' component= {Home}/>
-        <Route path='/details' component= {Details}/>
-        <Route path='/edit' component= {Edit}/>
+        <Route exact path='/' component= {Home} />
+       
+       {/* TESTING FOR ADDING PROPS TO ROUTES */}
+        {/* <Route path='/details' component={Details} /> */}
+        <Route path = '/details' render={(reduxStore) => ( 
+            <Details {...reduxStore} />
+              )}/>
+
+
+        <Route path='/edit' component= {Edit} />
       </main>
 
 </Router>
@@ -24,4 +32,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStoreToProps = (reduxStore) => ({
+  reduxStore
+})
+
+export default connect(mapStoreToProps) (App);

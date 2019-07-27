@@ -9,9 +9,10 @@ import { connect } from 'react-redux';
 class MovieItem extends Component{
  
 //   add in item to pass to get at id
-  handleImageClick = () => {
-      console.log('clicked image');
-      this.props.history.push('/details');
+  handleImageClick = (item) => {
+     this.props.dispatch({type: 'FETCH_DETAILS', payload: item.id});
+      console.log('clicked image', item.id);
+    this.props.history.push('/details');
   }
 
     render(){
@@ -21,7 +22,7 @@ class MovieItem extends Component{
                     this.props.reduxStore.movies.map( item  => (
                         <div key={item.id}>
                             <br/>
-                            <img src={item.poster} alt="" onClick={this.handleImageClick}/>
+                            <img src={item.poster} alt="" onClick={()=>this.handleImageClick(item)}/>
                             <br/>
                             <br/>
                             {item.description}

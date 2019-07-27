@@ -17,21 +17,44 @@ class Details extends Component {
   }
 
   render() {
+      
+      
     return (
 
 
     <>
-        <header className='EditHeader'>
-          <h1 className='EditHeaderText'>Details for this movie!</h1>
+        <header className='DetailsHeader'>
+          <h1 className='DetailsHeaderText'>Details for this movie!</h1>
             <p> this is the details header </p>
         </header>
 
     <main>
-            <p> this is the body </p>
+            <div>
+                Here's the thing you wanted :P
+               <br/>
+                <br/>
+                 {
+                    this.props.reduxStore.genres.map( item  => (
+                        <div key={item.id}>
+                            
+                               <span className="titleItem">{item.title}</span>
+                               
+                               <ul>
+                               <li>{item.description}</li>
+                               <br/>
+                                <br/>
+                                <li>{item.name}</li>
+                                </ul>
+
+                            </div>
+                    )
+                )
+                }
+
+            </div>
         <br/>
 {/*---------------- BUTTONS TO SAVE INPUT AND CANCEL INPUT(NAV AWAY) -------------------*/}
             <button onClick={this.handleDetailsClick1}>Edit</button>
-        <br/>
             <button onClick={this.handleDetailsClick2}>Home</button>
 
     </main>
@@ -42,4 +65,8 @@ class Details extends Component {
   }
 }
 
-export default connect() (Details);
+const mapStoreToProps = (reduxStore) => ({
+    reduxStore
+})
+
+export default connect(mapStoreToProps)(Details);
