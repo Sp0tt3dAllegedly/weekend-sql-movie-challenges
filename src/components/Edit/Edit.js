@@ -10,14 +10,14 @@ class Edit extends Component {
 
   // SAVE BUTTON
     handleEditClick1 = () => {
-        console.log('clicked edit clicker');
-        this.props.history.push('/movies-list/movies');
+        console.log('clicked save clicker');
+       
     }
-    
+
 // CANCEL BUTTON
     handleEditClick2 = () => {
         console.log('clicked edit clicker');
-        this.props.history.push('/movies-list/movies');
+        this.props.history.push('/');
     }
 
   render() {

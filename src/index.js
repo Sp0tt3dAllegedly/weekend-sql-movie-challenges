@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
+import Axios from 'axios';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // Provider allows us to use redux within our react app
@@ -13,24 +14,31 @@ import { takeLatest, put} from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    takeLatest('FETCH_MOVIES', fetchMoviesSaga);
-    takeLatest('FETCH_GENERES', fetchGenresSaga);
-    takeLatest('new stuff here', showDetailsSaga);
+   yield takeLatest('FETCH_MOVIES', fetchMoviesSaga);
+   yield takeLatest('FETCH_GENERES', fetchGenresSaga);
+    // takeLatest('SET_MOVIE_LIST', showDetailsSaga);
 
 }
 
 
 function* fetchMoviesSaga(){
-// 'SET_MOVIES' HERE
+    try {
+        const response = yield Axios.get('/movies-list/movies');
+        yield put ({type: 'SET_MOVIES', payload: response.data});
+    } catch (error) {
+        console.log('error getting movies', error);
+        alert('could not get movies');
+        
+    }
 }
 
 function* fetchGenresSaga(){
     // 'SET_TAGS(genres)' HERE
 }
 
-function* showDetailsSaga(){
+// function* showDetailsSaga(){
     // 'SET_MOVIE_LIST'
-}
+// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -55,21 +63,21 @@ const genres = (state = [], action) => {
     }
 }
 
-const movieGenreList = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_MOVIE_LIST':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+// const movieGenreList = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_MOVIE_LIST':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 // Create one store that all components can use
-const storeInstance = createStore(
+const reduxStore = createStore(
     combineReducers({
         movies,
         genres,
-        movieGenreList
+        // movieGenreList
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
@@ -78,6 +86,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={reduxStore}><App /></Provider>, 
     document.getElementById('root'));
 registerServiceWorker();
