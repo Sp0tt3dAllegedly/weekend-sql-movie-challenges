@@ -46,7 +46,7 @@ function* fetchDetailsSaga(action){
 
 // this saga is used for editing a movie item in the database!
 function* editSaga(action){
-    'EDIT_DETAILS'
+   
     try {
         yield Axios.put(`/movies-list/edit-page/${action.payload.movieId}`, action.payload);
         yield put ({type: 'FETCH_CHARACTERS'});
@@ -85,7 +85,7 @@ const reduxStore = createStore(
     combineReducers({
         movies, // reducer to get movies
         genres, // reducer to get genre, and other details
-        edit, // reducer to edit selected movie details
+       
 
     }),
     // Add sagaMiddleware to our store

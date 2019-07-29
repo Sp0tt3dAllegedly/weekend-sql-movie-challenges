@@ -7,16 +7,27 @@ import { connect } from 'react-redux';
 class Edit extends Component {
   // Renders the Details page on the DOM
 
+  // local state for editing!
+
+  state = {
+      movieId: null,
+      description: null,
+      title: null
+  }
 
   // SAVE BUTTON
     handleEditClick1 = () => {
         console.log('clicked save clicker');
-       // this is supposed to 
+       
     }
 
 // CANCEL BUTTON
-    handleEditClick2 = () => {
-        console.log('clicked edit clicker');
+    // sends user back to home page 
+        // without changing anything!
+
+    handleCancelClick = () => {
+        console.log('clicked cancel entry button!');
+        alert('heading back to home page!');
         this.props.history.push('/');
     }
 
@@ -36,7 +47,7 @@ class Edit extends Component {
 {/*---------------- BUTTONS TO SAVE INPUT AND CANCEL INPUT(NAV AWAY) -------------------*/}
             <button onClick={this.handleEditClick1}>Save</button>
         <br/>
-            <button onClick={this.handleEditClick2}>Cancel</button>
+            <button onClick={this.handleCancelClick}>Cancel</button>
 
     </main>
     </>
