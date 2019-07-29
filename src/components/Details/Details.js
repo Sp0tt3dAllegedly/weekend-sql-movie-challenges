@@ -30,27 +30,28 @@ class Details extends Component {
 
     <main>
             <div>
-                Here's the thing you wanted :P
+               
                <br/>
-                <br/>
+                <br/><ul>
                  {
                     this.props.reduxStore.genres.map( item  => (
-                        <div key={item.id}>
+                        <div >
                             
                                <span className="titleItem">{item.title}</span>
                                
-                               <ul>
-                               <li>{item.description}</li>
+                               
+                               <li key={item.id}>{item.description}</li>
                                <br/>
                                 <br/>
                                 <li>{item.name}</li>
-                                </ul>
+                                
 
                             </div>
                     )
+                  
                 )
                 }
-
+</ul> 
             </div>
         <br/>
 {/*---------------- BUTTONS TO SAVE INPUT AND CANCEL INPUT(NAV AWAY) -------------------*/}

@@ -15,7 +15,7 @@ import { takeLatest, put} from 'redux-saga/effects';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeLatest('FETCH_MOVIES', fetchMoviesSaga);
-    // yield takeLatest('FETCH_GENERES', fetchGenresSaga);
+    yield takeLatest('EDIT_DETAILS', editSaga);
     yield takeLatest('FETCH_DETAILS', fetchDetailsSaga);
 
 }
@@ -24,7 +24,7 @@ function* rootSaga() {
 function* fetchMoviesSaga(){
     try {
         const response = yield Axios.get('/movies-list/');
-        yield put ({type: 'SET_MOVIES', payload: response.data});
+        yield put ({type: 'GET_MOVIES', payload: response.data});
     } catch (error) {
         console.log('error getting movies', error);
         alert('could not get movies');
@@ -43,9 +43,18 @@ function* fetchDetailsSaga(action){
     }
 }
 
-// function* newSaga(){
-    // 'NEW_ACTION'
-// }
+
+// this saga is used for editing a movie item in the database!
+function* editSaga(action){
+    'EDIT_DETAILS'
+    try {
+        yield Axios.put(`/movies-list/edit-page/${action.payload.movieId}`, action.payload);
+        yield put ({type: 'EDIT_DETAILS'});
+   } catch (error) {
+     console.log('error editing those details...', error);
+     alert('Sorry, try something else...');
+  }
+}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -63,7 +72,7 @@ const movies = (state = [], action) => {
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
-        case 'SET_DETAILS':
+        case 'GET_DETAILS':
             return action.payload;
         default:
             return state;
