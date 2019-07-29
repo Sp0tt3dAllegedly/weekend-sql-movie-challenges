@@ -49,7 +49,7 @@ function* editSaga(action){
     'EDIT_DETAILS'
     try {
         yield Axios.put(`/movies-list/edit-page/${action.payload.movieId}`, action.payload);
-        yield put ({type: 'EDIT_DETAILS'});
+        yield put ({type: 'FETCH_CHARACTERS'});
    } catch (error) {
      console.log('error editing those details...', error);
      alert('Sorry, try something else...');
@@ -79,14 +79,6 @@ const genres = (state = [], action) => {
     }
 }
 
-const edit = (state = [], action) => {
-    switch (action.type) {
-        case 'EDIT_MOVIE_INPUT':
-            return action.payload;
-        default:
-            return state;
-    }
-}
 
 // Create one store that all components can use
 const reduxStore = createStore(
