@@ -42,3 +42,23 @@ VALUES
 ('Science Fiction'),
 ('Space-Opera'),
 ('Superhero');
+
+
+CREATE TABLE "movies_with_genres" (
+	"id" SERIAL PRIMARY KEY,
+	"movies_id" INT REFERENCES "movies",
+	"genres_id" INT REFERENCES "genres"
+	);
+
+INSERT INTO "movies_with_genres"
+VALUES (1,1,1), (2,2,2), (3,3,2), (4,4,2), (5,5,5), (6,6,1), (7,7,12), (8,8,8), (9,9,2), (10,10,12), (11,11,12), (12,12,5), (13,13,7), (14,14,2);
+
+
+-- `UPDATE "movies" SET "description"=$2, "title"=$3 WHERE "id"=$1;` -> sql query for updating database items
+
+-- `SELECT "movies"."title", "movies"."description", "genres"."name", "movies"."id"
+  -- FROM "movies_with_genres"
+  -- JOIN "movies" on "movies"."id" = "movies_with_genres"."movies_id"
+  -- JOIN "genres" on "genres"."id" = "movies_with_genres"."genres_id"
+  -- WHERE "movies"."id" = $1;`
+  -----------------------------------> above is sql query to join movies and genres tables

@@ -30,8 +30,8 @@ class Edit extends Component {
 
     handleCancelClick = () => {
         console.log('clicked cancel entry button!');
-        alert('heading back to home page without editing!');
-        this.props.history.push('/');
+        alert('heading back to details page without editing!');
+        this.props.history.push('/details');
     }
 
 handleChangeForDescription = (event, propertyToChange) => {
