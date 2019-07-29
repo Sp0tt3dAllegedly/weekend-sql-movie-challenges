@@ -49,7 +49,7 @@ function* editSaga(action){
    
     try {
         yield Axios.put(`/movies-list/edit-page/${action.payload.movieId}`, action.payload);
-        yield put ({type: 'FETCH_CHARACTERS'});
+        yield put ({type: 'FETCH_MOVIES'});
    } catch (error) {
      console.log('error editing those details...', error);
      alert('Sorry, try something else...');
@@ -62,7 +62,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
     switch (action.type) {
-        case 'SET_MOVIES':
+        case 'GET_MOVIES':
             return action.payload;
         default:
             return state;

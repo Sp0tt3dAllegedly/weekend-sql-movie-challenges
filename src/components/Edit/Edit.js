@@ -10,15 +10,18 @@ class Edit extends Component {
   // local state for editing!
 
   state = {
-      movieId: null,
-      description: null,
-      title: null
+      movieId: '',
+      description: '',
+      title: ''
   }
 
+
   // SAVE BUTTON
-    handleEditClick1 = () => {
-        console.log('clicked save clicker');
-       
+    handleSaveClick = () => {
+        console.log('clicked save-named clicker');
+       this.props.dispatch({type: 'EDIT_DETAILS', payload: this.state});
+       alert('heading back to home page after editing!');
+       this.props.history.push('/');
     }
 
 // CANCEL BUTTON
@@ -27,9 +30,27 @@ class Edit extends Component {
 
     handleCancelClick = () => {
         console.log('clicked cancel entry button!');
-        alert('heading back to home page!');
+        alert('heading back to home page without editing!');
         this.props.history.push('/');
     }
+
+handleChangeForDescription = (event, propertyToChange) => {
+    
+     this.setState({
+         [propertyToChange]: event.target.value
+
+     })
+     console.log('typing in description', this.state.description);
+}
+
+handleChangeForTitle = (event, propertyToChange) => {
+    
+     this.setState({
+         [propertyToChange]: event.target.value
+
+     })
+     console.log('typing in title section...', this.state.title);
+}
 
   render() {
     return (
@@ -44,8 +65,19 @@ class Edit extends Component {
     <main>
             <p> this is the body of the header </p>
         <br/>
+
+        <input type="text" name="description" placeholder="edit this movie description?"
+                          onChange= {(event) => this.handleChangeForDescription(event, 'description')}
+                          value={this.state.description}>
+                   </input>
+
+        <input type="text" name="title" placeholder="edit this movie title? are you sure??"
+                          onChange= {(event) => this.handleChangeForTitle(event, 'title')}
+                          value={this.state.title}>
+                   </input>
+
 {/*---------------- BUTTONS TO SAVE INPUT AND CANCEL INPUT(NAV AWAY) -------------------*/}
-            <button onClick={this.handleEditClick1}>Save</button>
+            <button onClick={this.handleSaveClick}>Save</button>
         <br/>
             <button onClick={this.handleCancelClick}>Cancel</button>
 
