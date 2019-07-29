@@ -15,15 +15,15 @@ class App extends Component {
 <Router>
 
       <main>
+        {/* ROUTE FOR HOME PAGE (displays movies) */}
         <Route exact path='/' component= {Home} />
-       
+
+      {/* ROUTE FOR DETAILS PAGE (displays full details; route opt. 1b used here) */}
        {/* TESTING FOR ADDING PROPS TO ROUTES */}
-        {/* <Route path='/details' component={Details} /> */}
-        <Route path = '/details' render={(reduxStore) => ( 
-            <Details {...reduxStore} />
-              )}/>
+        {/*(1a) <Route path='/details' component={Details} /> */}
+       {/*(1b)*/} <Route path='/details'render={(reduxStore)=>(<Details {...reduxStore} />)}/>
 
-
+       {/* ROUTE FOR EDIT PAGE */}
         <Route path='/edit' component= {Edit} />
       </main>
 

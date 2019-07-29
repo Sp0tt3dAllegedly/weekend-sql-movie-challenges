@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class Edit extends Component {
   // Renders the Details page on the DOM
 
-  // local state for editing!
+  // local state for editing/dispatching
 
   state = {
       movieId: this.props.reduxStore.genres.id,
@@ -17,6 +17,9 @@ class Edit extends Component {
 
 
   // SAVE BUTTON
+    // sends a dispatch with the local state
+      // update our reducer and database
+
     handleSaveClick = () => {
         console.log('clicked save-named clicker');
        this.props.dispatch({type: 'EDIT_DETAILS', payload: this.state});
@@ -34,6 +37,7 @@ class Edit extends Component {
         this.props.history.push('/details');
     }
 
+// function that sets state proptery 'description' to value entered into input field
 handleChangeForDescription = (event, propertyToChange) => {
     
      this.setState({
@@ -43,6 +47,7 @@ handleChangeForDescription = (event, propertyToChange) => {
      console.log('typing in description', this.state.description);
 }
 
+// function that sets state proptery 'title' to value entered into input field
 handleChangeForTitle = (event, propertyToChange) => {
     
      this.setState({
@@ -60,19 +65,19 @@ handleChangeForTitle = (event, propertyToChange) => {
 
     <>
         <header className='EditHeader'>
-          <h1 className='EditHeaderText'>Edit this movie!</h1>
-            <p> this is the edit header </p>
+          <h1 className='EditHeaderText'>The Movie Gallery </h1>
+            <p>Edit this movie!</p>
         </header>
 
     <main>
-            <p> this is the body of the header </p>
+            
         <br/>
-
+            {/* input here to edit description property of movie */}
         <input type="text" name="description" placeholder="edit this movie description?"
                           onChange= {(event) => this.handleChangeForDescription(event, 'description')}
                           value={this.state.description}>
                    </input>
-
+            {/* input here to edit title property of movie */}
         <input type="text" name="title" placeholder="edit this movie title? are you sure??"
                           onChange= {(event) => this.handleChangeForTitle(event, 'title')}
                           value={this.state.title}>

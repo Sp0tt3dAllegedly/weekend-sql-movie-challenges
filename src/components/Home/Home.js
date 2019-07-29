@@ -15,11 +15,7 @@ class Home extends Component {
       this.props.dispatch({type: 'FETCH_MOVIES'});
 
   }
-
-// handleImageClick = () => {
-//     console.log('clicked image');
-//     this.props.history.push('/details');
-// }
+  
 
   render() {
     return (
@@ -29,7 +25,8 @@ class Home extends Component {
         <header className='HomeHeader'>
           <h1 className='HomeHeaderText'>Movies Weekend Challenge</h1>
         </header>
-    
+
+    {/* render movie item component here */}
     <MovieItem history={this.props.history}/>
     </div>
     );

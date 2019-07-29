@@ -24,42 +24,27 @@ class Details extends Component {
 
     <>
         <header className='DetailsHeader'>
-          <h1 className='DetailsHeaderText'>Details for this movie!</h1>
-            <p> this is the details header </p>
+          <h1 className='DetailsHeaderText'>The Movie Gallery</h1>
+          <p>Details for this movie!</p>
         </header>
 
     <main>
             <div>
-               
+               <ul>
                <br/>
-                <br/><ul>
-                 {/* {
-                    this.props.reduxStore.genres.map( item  => (
-                        <div >
-                            
-                               <span className="titleItem">{item.title}</span>
-                               
-                               
-                               <li key={item.id}>{item.description}</li>
-                               <br/>
-                                <br/>
-                                <li>{item.name}</li>
-                                
-
-                            </div>
-                    )
-                  
-                )
-                } */}
+                <br/>
 
                 {this.props.reduxStore.genres.title}
                 <br/>
+                <br/>
                 {this.props.reduxStore.genres.description}
                 <br/>
+                <br/>
+               
                 {this.props.reduxStore.genres.name}
                 <br/>
                 <br/>
-</ul> 
+</ul>
             </div>
         <br/>
 {/*---------------- BUTTONS TO SAVE INPUT AND CANCEL INPUT(NAV AWAY) -------------------*/}
