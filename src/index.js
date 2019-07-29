@@ -79,21 +79,22 @@ const genres = (state = [], action) => {
     }
 }
 
-// const movieGenreList = (state = [], action) => {
-//     switch (action.type) {
-//         case 'SET_MOVIE_LIST':
-//             return action.payload;
-//         default:
-//             return state;
-//     }
-// }
+const edit = (state = [], action) => {
+    switch (action.type) {
+        case 'EDIT_MOVIE_INPUT':
+            return action.payload;
+        default:
+            return state;
+    }
+}
 
 // Create one store that all components can use
 const reduxStore = createStore(
     combineReducers({
-        movies,
-        genres,
-        // movieGenreList
+        movies, // reducer to get movies
+        genres, // reducer to get genre, and other details
+        edit, // reducer to edit selected movie details
+
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
