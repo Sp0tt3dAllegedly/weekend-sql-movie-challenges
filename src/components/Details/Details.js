@@ -33,7 +33,7 @@ class Details extends Component {
                
                <br/>
                 <br/><ul>
-                 {
+                 {/* {
                     this.props.reduxStore.genres.map( item  => (
                         <div >
                             
@@ -50,7 +50,15 @@ class Details extends Component {
                     )
                   
                 )
-                }
+                } */}
+
+                {this.props.reduxStore.genres.title}
+                <br/>
+                {this.props.reduxStore.genres.description}
+                <br/>
+                {this.props.reduxStore.genres.name}
+                <br/>
+                <br/>
 </ul> 
             </div>
         <br/>

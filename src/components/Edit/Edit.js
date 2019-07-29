@@ -10,7 +10,7 @@ class Edit extends Component {
   // local state for editing!
 
   state = {
-      movieId: '',
+      movieId: this.props.reduxStore.genres.id,
       description: '',
       title: ''
   }
@@ -53,6 +53,8 @@ handleChangeForTitle = (event, propertyToChange) => {
 }
 
   render() {
+      console.log(this.state);
+      
     return (
 
 
@@ -77,6 +79,10 @@ handleChangeForTitle = (event, propertyToChange) => {
                    </input>
 
 {/*---------------- BUTTONS TO SAVE INPUT AND CANCEL INPUT(NAV AWAY) -------------------*/}
+        <br/>
+        <br/>
+        <br/>
+        <br/>
             <button onClick={this.handleSaveClick}>Save</button>
         <br/>
             <button onClick={this.handleCancelClick}>Cancel</button>

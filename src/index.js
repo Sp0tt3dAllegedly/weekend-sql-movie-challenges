@@ -35,7 +35,7 @@ function* fetchMoviesSaga(){
 function* fetchDetailsSaga(action){
      try {
         const response = yield Axios.get(`/movies-list/${action.payload}`);
-        yield put ({type: 'SET_DETAILS', payload: response.data});
+        yield put ({type: 'GET_DETAILS', payload: response.data});
     } catch (error) {
         console.log('error getting details', error);
         alert('could not get movie details');
@@ -70,7 +70,7 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
+const genres = (state = {}, action) => {
     switch (action.type) {
         case 'GET_DETAILS':
             return action.payload;

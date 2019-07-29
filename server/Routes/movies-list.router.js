@@ -21,7 +21,7 @@ router.get('/', (req, res) =>{
 router.get(`/:id`, (req, res) =>{
     console.log('hi here this is a check~!!');
     
-    const sqlText = `SELECT "movies"."title", "movies"."description", "genres"."name" 
+    const sqlText = `SELECT "movies"."title", "movies"."description", "genres"."name", "movies"."id"
                     FROM "movies_with_genres"
                     JOIN "movies" on "movies"."id" = "movies_with_genres"."movies_id"
                     JOIN "genres" on "genres"."id" = "movies_with_genres"."genres_id"
@@ -32,7 +32,7 @@ router.get(`/:id`, (req, res) =>{
 
         pool.query(sqlText, value)
         .then( (response) => {
-            res.send(response.rows);
+            res.send(response.rows[0]);
         })
         .catch ((error) =>{
             console.log(`error getting movie details`, error);
